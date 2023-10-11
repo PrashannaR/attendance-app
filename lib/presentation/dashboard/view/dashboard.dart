@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:nock/Components/colors.dart';
+import 'package:nock/presentation/checkinResult/view/successfully_checked_in.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -213,7 +214,8 @@ class _DashboardState extends State<Dashboard> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Dashboard()));
+                              builder: (context) =>
+                                  const SuccessfullyCheckedIn()));
                     },
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.white,
