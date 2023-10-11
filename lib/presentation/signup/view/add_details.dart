@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nock/Components/colors.dart';
+import 'package:nock/presentation/dashboard/view/dashboard.dart';
 
 class AddDetails extends StatefulWidget {
   const AddDetails({super.key});
@@ -168,7 +169,12 @@ class _AddDetailsState extends State<AddDetails> {
                   width: MediaQuery.of(context).size.width * 0.8,
                   height: 60,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Dashboard()));
+                    },
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.white,
                       backgroundColor: blueColor,
