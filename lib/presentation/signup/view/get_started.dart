@@ -53,7 +53,7 @@ class GetStarted extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 25, 8, 0),
+              padding: const EdgeInsets.fromLTRB(8, 60, 8, 0),
               child: Center(
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width * 0.8,
