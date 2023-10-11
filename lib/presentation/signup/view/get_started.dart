@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nock/Components/colors.dart';
+import 'package:nock/presentation/signup/view/add_details.dart';
 
 class GetStarted extends StatelessWidget {
   const GetStarted({super.key});
@@ -58,7 +59,13 @@ class GetStarted extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.8,
                   height: 60,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AddDetails()),
+                      );
+                    },
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.white,
                       backgroundColor: blueColor,
