@@ -30,8 +30,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  bloc:
+  flutter_bloc:
 
   flutter_native_splash: ^2.3.3
+
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -71,6 +75,9 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  assets:
+    - assets/
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
@@ -87,11 +94,14 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+  fonts:
+    - family: Product Sans
+      fonts:
+        - asset: fonts/Product-Sans-Regular.ttf
+        - asset: fonts/Product-Sans-Italic.ttf
+        - asset: fonts/Product-Sans-Bold.ttf
+        - asset: fonts/Product-Sans-Bold-Italic.ttf
+          
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
