@@ -170,11 +170,20 @@ class _AddDetailsState extends State<AddDetails> {
                   height: 60,
                   child: TextButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Dashboard()));
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Dashboard(),
+                        ),
+                        (Route<dynamic> route) => false,
+                      );
                     },
+                    // onPressed: () {
+                    //   Navigator.pushAndRemoveUntil(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //           builder: (context) => const Dashboard()));
+                    // },
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.white,
                       backgroundColor: blueColor,

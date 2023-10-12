@@ -211,11 +211,13 @@ class _DashboardState extends State<Dashboard> {
                   height: 60,
                   child: TextButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const SuccessfullyCheckedIn()));
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const SuccessfullyCheckedIn()),
+                        (Route<dynamic> route) => false,
+                      );
                     },
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.white,

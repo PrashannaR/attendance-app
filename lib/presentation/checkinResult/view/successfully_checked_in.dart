@@ -53,10 +53,12 @@ class SuccessfullyCheckedIn extends StatelessWidget {
                 height: 60,
                 child: TextButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Dashboard()));
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Dashboard()),
+                      (Route<dynamic> route) => false,
+                    );
                   },
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.white,
