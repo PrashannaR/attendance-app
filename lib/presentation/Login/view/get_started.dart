@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nock/Components/colors.dart';
-import 'package:nock/presentation/signup/view/add_details.dart';
+import 'package:nock/presentation/Login/view/add_details.dart';
+
 
 class GetStarted extends StatelessWidget {
   const GetStarted({super.key});
