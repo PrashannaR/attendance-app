@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:nock/Components/colors.dart';
-import 'package:nock/presentation/dashboard/view/dashboard.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class OtpView extends StatefulWidget {
+  const OtpView({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<OtpView> createState() => _OtpViewState();
 }
 
-class _SignUpState extends State<SignUp> {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
+class _OtpViewState extends State<OtpView> {
+  final List<TextEditingController> controllers =
+      List.generate(6, (index) => TextEditingController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,16 +25,9 @@ class _SignUpState extends State<SignUp> {
             SizedBox(height: MediaQuery.of(context).size.height * 0.075),
             buildWelcomeText(),
             SizedBox(height: MediaQuery.of(context).size.height * 0.075),
-            buildInputField("Name", _nameController,
-                keyboardType: TextInputType.name),
-            const SizedBox(height: 20),
-            buildInputField("Email", _emailController,
-                keyboardType: TextInputType.emailAddress),
-            const SizedBox(height: 20),
-            buildInputField("Password", _passwordController,
-                keyboardType: TextInputType.name),
+            buildOtpView(),
             const Spacer(),
-            buildLoginButton(),
+            buildOTPVerifyButton(),
           ],
         ),
       ),
@@ -84,40 +74,43 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
-  Widget buildInputField(String hintText, TextEditingController controller,
-      {TextInputType keyboardType = TextInputType.text}) {
-    return Center(
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.8,
-        height: 60,
-        decoration: BoxDecoration(
-          color: const Color(0xFFF5F5F5),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: TextField(
-              style: const TextStyle(
-                color: blueColor,
-              ),
-              decoration: InputDecoration(
-                hintText: hintText,
-                hintStyle: const TextStyle(
-                  fontSize: 14,
-                  color: Color(0xFFB0B0B0),
-                ),
-                border: InputBorder.none,
-              ),
-              keyboardType: keyboardType,
-            ),
+  Widget buildOtpView() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: List.generate(
+        6,
+        (index) => buildDigitField(controllers[index], index),
+      ),
+    );
+  }
+
+  Widget buildDigitField(TextEditingController controller, int index) {
+    return SizedBox(
+      width: 40,
+      child: TextField(
+        controller: controller,
+        keyboardType: TextInputType.number,
+        textAlign: TextAlign.center,
+        maxLength: 1,
+        onChanged: (value) {
+          if (value.isNotEmpty && index < controllers.length - 1) {
+            FocusScope.of(context).nextFocus();
+          }
+        },
+        decoration: const InputDecoration(
+          counter: Offstage(),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 2, color: Colors.blue),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 2, color: Colors.blue),
           ),
         ),
       ),
     );
   }
 
-  Widget buildLoginButton() {
+  Widget buildOTPVerifyButton() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 25, 8, 145),
       child: Center(
@@ -126,13 +119,14 @@ class _SignUpState extends State<SignUp> {
           height: 60,
           child: TextButton(
             onPressed: () {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const Dashboard(),
-                ),
-                (Route<dynamic> route) => false,
-              );
+              // Navigator.pushAndRemoveUntil(
+              //   context,
+              //   MaterialPageRoute(
+              //     //builder: (context) => const Dashboard(),
+              //     builder: (context) => const OtpView(),
+              //   ),
+              //   (Route<dynamic> route) => false,
+              // );
             },
             style: TextButton.styleFrom(
               foregroundColor: Colors.white,
@@ -142,7 +136,7 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
             child: const Text(
-              "Log In",
+              "Verify OTP",
               style: TextStyle(
                 fontSize: 18,
                 fontFamily: "Product Sans",
